@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quirky Site Explorer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background-size: 300% 300%;
+      animation: gradientBG 8s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      color: white;
+      background-color: #6a0572;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #9b0f9b;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <button id="randomButton">Take Me Somewhere Weird</button>
+
+  <script>
+    // Placeholder for the sites list
+    let sites = [];
+
+    // Fetch the list of websites from the external JSON file
+    fetch('sites.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load sites list');
+        }
+        return response.json();
+      })
+      .then(data => {
+        sites = data.sites;
+      })
+      .catch(error => {
+        console.error('Error loading sites:', error);
+      });
+
+    // Add functionality to the button
+    document.getElementById("randomButton").addEventListener("click", function() {
+      if (sites.length === 0) {
+        alert("The sites list is not loaded yet. Please try again!");
+        return;
+      }
+      // Pick a random site from the array
+      const randomSite = sites[Math.floor(Math.random() * sites.length)];
+      // Redirect to the random site
+      window.open(randomSite, "_blank");
+    });
+  </script>
+</body>
+</html>
