@@ -63,16 +63,16 @@
       });
 
     // Add functionality to the button
-    document.getElementById("randomButton").addEventListener("click", function() {
-      if (sites.length === 0) {
-        alert("The sites list is not loaded yet. Please try again!");
-        return;
-      }
-      // Pick a random site from the array
-      const randomSite = sites[Math.floor(Math.random() * sites.length)];
-      // Redirect to the random site
-      window.open(randomSite, "_blank");
-    });
+  document.getElementById("randomButton").addEventListener("click", function () {
+    if (sites.length === 0) {
+      alert("The sites list is not loaded yet. Please try again!");
+      return;
+    }
+    // Pick a random site from the array
+    const randomSite = sites[Math.floor(Math.random() * sites.length)];
+    // Open the random site in a new tab
+    window.open(randomSite, "_blank");
+  });
   </script>
 </body>
 </html>
